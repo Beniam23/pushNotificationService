@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author biniamgebreyesus
+ * @since 25/09/17
+ * @version 1.0
+ * 
+ * */
 @RestController
 public class UserController {
 
 	UserService userService = new UserService();
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public ResponseEntity<User> register(@RequestParam(value="username") String username,
-										@RequestParam(value="accessToken") String accessToken){
+	public ResponseEntity<User> register(@RequestParam(value="username") String username, @RequestParam(value="accessToken") String accessToken){
 		
 		Optional<User> users = userService.getUsers()
 				.stream()
@@ -43,8 +48,7 @@ public class UserController {
 	
 	
 	@RequestMapping(value="/pushNotification", method=RequestMethod.POST)
-	public ResponseEntity<Map<String , Object>> sendPushNotification(@RequestParam(value="username") String username,
-																	@RequestParam(value="message") String message){
+	public ResponseEntity<Map<String , Object>> sendPushNotification(@RequestParam(value="username") String username, @RequestParam(value="message") String message){
 		
 		Map<String , Object> response = null;
 		Optional<User> user = userService.getUsers()

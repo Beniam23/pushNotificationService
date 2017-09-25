@@ -3,6 +3,11 @@ package org.bbc.pushbullet.items;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author biniamgebreyesus
+ * @since 25/09/17
+ * @version 1.0
+ * */
 public class User {
 
 	private String username;

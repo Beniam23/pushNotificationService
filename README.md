@@ -16,5 +16,10 @@ RESTful API solution for push notification using pushbullet.
 * Maven -> update project 
 * run project 
 
+or else
+
+* you can simply run the jar file provided on Terminal or CMD :- `./mvnw spring-boot:run` 
+
+
 # Author
 - Biniam Gebreyesus (beniam23@gmail.com)

@@ -18,6 +18,12 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author biniamgebreyesus
+ * @since 25/09/17
+ * @version 1.0
+ *  
+ *  this service provides a function to create a note notification */
 public class PushbulletService {
 	
 	private final String url = "https://api.pushbullet.com/v2";

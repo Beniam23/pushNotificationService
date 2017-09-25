@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bbc.pushbullet.items.User;
 
+/**
+ * @author biniamgebreyesus
+ * @since 25/09/17
+ * @version 1.0
+ * */
 public class UserService {
 
 	List<User> users = new ArrayList<>();
