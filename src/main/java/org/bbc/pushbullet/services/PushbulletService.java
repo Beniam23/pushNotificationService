@@ -1,7 +1,9 @@
 package org.bbc.pushbullet.services;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+
 import org.bbc.pushbullet.items.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,18 +39,18 @@ public class PushbulletService {
 		ResponseEntity<JsonNode> response = null;
 		
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, Object> result = null;
+		Map<String, Object> result = new HashMap<>();
 		try {
 			response = restTemplate.exchange(url+ "/pushes", HttpMethod.POST, entity, JsonNode.class);
 			user.increamentPushNotification();
 			result = mapper.convertValue(response, Map.class);
 			
 		}catch (HttpStatusCodeException exception) {
-		    int statusCode = exception.getStatusCode().value();
-		    
+		    result.put("statusCode", exception.getStatusText());
+		    result.put("statusCodeValue", exception.getStatusCode().value());
+		    return result;
 		}
-		
-		System.out.println(result);
+		result.remove("headers");
 		
 		return result;
 	}

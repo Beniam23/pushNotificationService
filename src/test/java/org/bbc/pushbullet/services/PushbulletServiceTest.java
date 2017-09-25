@@ -14,7 +14,7 @@ public class PushbulletServiceTest {
 		User user = new User("biniam","o.xQrCMowPMN82rxbXV6VbRebDds6LQxkI");
 		int notificationNum = user.getNumOfNotificationsPushed();
 		Map<String, Object> response = new PushbulletService().sendNoteNotification(user, "message from pushbulletService", "pushbullet");
-		
+
 		assertEquals("OK",response.get("statusCode"));
 		assertEquals(user.getNumOfNotificationsPushed(),notificationNum+1);
 		

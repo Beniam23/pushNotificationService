@@ -2,9 +2,7 @@ package org.bbc.pushbullet.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +22,26 @@ public class UserControllerTest {
 	
 	@Test
 	public void registeringUserShouldReturnRegistredUser() throws Exception {	
-		this.mockMvc.perform(post("/register").param("username", "biniam").param("accessToken", "token"))
-		.andDo(print())
+		this.mockMvc.perform(post("/register").param("username", "Tom").param("accessToken", "token"))
 		.andExpect(status().isOk());
 	}
 
 	@Test
 	public void shouldReturnAllRegisteredUsers() throws Exception {
+		this.mockMvc.perform(post("/register").param("username", "bini").param("accessToken", "token"));
+		this.mockMvc.perform(post("/register").param("username", "sami").param("accessToken", "token"));
+		this.mockMvc.perform(post("/register").param("username", "liz").param("accessToken", "token"));
+		
 		this.mockMvc.perform(get("/users"))
-		.andDo(print())
 		.andExpect(status().isOk());
 	}
 	
 	@Test
 	public void givenUsernameAndMessageExpectedToPushNotificationSuccesfully() throws Exception {
+		
+		this.mockMvc.perform(post("/register").param("username", "biniam").param("accessToken", "o.xQrCMowPMN82rxbXV6VbRebDds6LQxkI"));
+		
 		this.mockMvc.perform(post("/pushNotification").param("username", "biniam").param("message", "hello there"))
-		.andDo(print())
 		.andExpect(status().isOk());
 		
 	}
