@@ -2,8 +2,6 @@ package org.bbc.pushbullet.services;
 
 import java.util.Arrays;
 import java.util.Map;
-
-import org.bbc.pushbullet.handlers.MyResponseErrorHandler;
 import org.bbc.pushbullet.items.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +23,7 @@ public class PushbulletService {
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> sendNoteNotification(User user,String msg, String title) {
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.setErrorHandler(new MyResponseErrorHandler());
+		
 		MultiValueMap<String,String> message = new LinkedMultiValueMap<>();
 		message.add("body", msg);
 		message.add("title", title);
