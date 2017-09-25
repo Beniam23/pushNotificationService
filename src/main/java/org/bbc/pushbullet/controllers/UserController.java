@@ -1,8 +1,11 @@
 package org.bbc.pushbullet.controllers;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.bbc.pushbullet.items.User;
+import org.bbc.pushbullet.services.PushbulletService;
 import org.bbc.pushbullet.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +36,26 @@ public class UserController {
 		userService.addUser(new User("sami", "token 2"));
 		userService.addUser(new User("liz", "token 3"));
 		
-		
 		return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value="/pushNotification", method=RequestMethod.POST)
+	public ResponseEntity<Map<String , Object>> sendPushNotification(
+			@RequestParam(value="username") String username,
+			@RequestParam(value="message") String message){
+		
+			userService.addUser(new User("biniam", "o.xQrCMowPMN82rxbXV6VbRebDds6LQxkI"));
+			userService.addUser(new User("sami", "token 2"));
+			userService.addUser(new User("liz", "token 3"));
+		
+			Map<String , Object> response = null;
+			Optional<User> user = userService.getUsers().stream()
+						.filter(u -> u.getUsername().equals(username)).findFirst();
+		
+			if(user.isPresent())   
+				response = new PushbulletService().sendNoteNotification(user.get() , message, "PushNotification");
+			
+			return new ResponseEntity<Map<String , Object>>(response,HttpStatus.OK);
+	}
 }

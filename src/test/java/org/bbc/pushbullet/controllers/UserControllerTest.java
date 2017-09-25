@@ -36,4 +36,12 @@ public class UserControllerTest {
 		.andExpect(status().isOk());
 	}
 	
+	@Test
+	public void givenUsernameAndMessageExpectedToPushNotificationSuccesfully() throws Exception {
+		this.mockMvc.perform(post("/pushNotification").param("username", "biniam").param("message", "hello there"))
+		.andDo(print())
+		.andExpect(status().isOk());
+		
+	}
+	
 }

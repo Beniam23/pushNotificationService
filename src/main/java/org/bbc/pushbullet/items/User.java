@@ -57,5 +57,9 @@ public class User {
 		return "User [username=" + username + ", accessToken=" + accessToken + ", creationDate=" + creationDate
 				+ ", numOfNotificationsPushed=" + numOfNotificationsPushed + "]";
 	}
+
+	public void increamentPushNotification() {
+		this.numOfNotificationsPushed++;
+	}
 	
 }
