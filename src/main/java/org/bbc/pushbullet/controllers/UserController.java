@@ -1,5 +1,7 @@
 package org.bbc.pushbullet.controllers;
 
+import java.util.List;
+
 import org.bbc.pushbullet.items.User;
 import org.bbc.pushbullet.services.UserService;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,16 @@ public class UserController {
 		userService.addUser(user);
 		
 		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	@RequestMapping("/users")
+	public ResponseEntity<List<User>> getAllUsers(){
+		userService.addUser(new User("biniam", "token 1"));
+		userService.addUser(new User("sami", "token 2"));
+		userService.addUser(new User("liz", "token 3"));
+		
+		
+		return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
 	}
 	
 }
